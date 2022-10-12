@@ -5,7 +5,7 @@ import logo from '../../images/medical.jpg'
 
 function Menu() {
     return (
-        <div>
+        <div className=''>
             <div>
                 <div className="flex items-center mt-4 py-3 text-lg ml-8 ">
                     <img src={logo} className="h-6 sm:h-9" alt="Flowbite Logo" />

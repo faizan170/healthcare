@@ -1,6 +1,5 @@
 import React from 'react'
-import LeftSideDetail from '../../Components/Details/LeftSideDetail'
-import RightSideDetail from '../../Components/Details/RightSideDetail'
+import Detail from '../../Components/Details/Detail'
 import Menu from '../../Components/LayoutMenu/Menu'
 
 function HomePage() {
@@ -11,11 +10,7 @@ function HomePage() {
             </div>
             <div className='ml-10 flex justify-center items-center'>
                 
-                    <LeftSideDetail />
-                
-                <div className="border-r-2  border-[#BABCBF] ..."></div>
-                
-                    {/* <RightSideDetail /> */}
+                   <Detail/>
                 
             </div>
 
