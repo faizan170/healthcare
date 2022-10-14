@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { patients } from '../Config/Config'
+import { useDispatch } from "react-redux";
+import { patient } from '../../actions/detailsActions';
 
 function Left_Side_Detail(props) {
+    const [PatientId, setPatientId] = useState()
+    const dispatch = useDispatch();
+    const handleChange = (e) => {
+        console.log(e.target.value)
+        setPatientId(e.target.value)
+    }
+    patients.map((user) => {
+        if (user.id === PatientId) {
+            console.log(user)
+            dispatch(patient(user));
+        }
+    })
+    //
+
     return (
         <div className=" ">
             <form>
-                {/* <div className='flex text-[12px]'>
-          <h1 >Patient Info</h1>
-          <div className='flex items-center ml-2 mr-2'><iconify-icon icon="dashicons:arrow-right-alt2"></iconify-icon></div>
-          <h1 >Properties</h1>
-          <div className='flex items-center ml-2 mr-2'><iconify-icon icon="dashicons:arrow-right-alt2"></iconify-icon></div>
-          <h1 >Processes</h1>
-        </div> */}
+                
                 <div className={props.userIcon ? 'flex text-[14px] font-bold mb-[-12px] mt-6' : "hidden"}>
                     <iconify-icon width="20" height="20" icon={props.userIcon}></iconify-icon>
                     <div className='ml-2'>{props.number}</div>
@@ -33,16 +44,20 @@ function Left_Side_Detail(props) {
                         {/* --------------Place holder---------- */}
                         <div className='flex justify-center items-center bg-[#D9D9D9] text-sm'>
 
-                            <input class={`py-2.5  w-full ml-2 outline-none text-[#525252] ${props.dropDownIconBgColor ? "bg-[#FFFFFF] text-[#7C7C7C] border-2" : "bg-[#D9D9D9]"}`} placeholder="Place Holder"></input>
+                            {/* <input class={`py-2.5  w-full ml-2 outline-none text-[#525252] ${props.dropDownIconBgColor ? "bg-[#FFFFFF] text-[#7C7C7C] border-2" : "bg-[#D9D9D9]"}`} value={PatientId} placeholder="Place Holder"></input> */}
 
-                            <div className='cursor-pointer'>
+                            {/* <div className='cursor-pointer'>
                                 <iconify-icon width="25" height="25" icon="gridicons:dropdown"></iconify-icon>
-                            </div>
-                            {/* <select value={""}>
-                                <option value="A">Apple</option>
-                                <option value="B">Banana</option>
-                                <option value="C">Cranberry</option>
-                            </select> */}
+                            </div> */}
+
+                            <select value={PatientId} onChange={(e) => handleChange(e)} className="text-gray-900 text-sm w-full bg-[#D9D9D9] outline-none p-2.5 ">
+                                <option defaultValue>Select a Patient</option>
+                                {patients.map((user) => {
+                                    return (<option value={user.id}>{user.id}</option>)
+                                })}
+
+
+                            </select>
 
                         </div>
                         {/* <button id="dropdownDefault" data-dropdown-toggle="dropdown" className={`w-full font-semibold text-[#525252]  ${props.dropDownIconBgColor ? "bg-[#FFFFFF] text-[#7C7C7C] border-2" : "bg-[#D9D9D9]"}  focus:outline-none rounded-r-md text-[10px] md:text-xs px-2  py-2.5 text-center inline-flex justify-between items-center `} type="button">{props.dropDownText} <svg className="ml-20 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button> */}

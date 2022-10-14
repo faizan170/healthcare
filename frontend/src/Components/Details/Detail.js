@@ -1,13 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Patients from './Patients/Patients'
+import Patient_Id from './Patients/Department'
 import Right_Side_Detail from './Right_Side_Detail'
 
 
 function Detail() {
+
+    // const screens = [
+    //     "patients",
+    //     "departments",
+
+    // ]
+    const screens = [
+        <Patients />,
+        <Patient_Id />, 
+    ]
+
+    const comps = {
+        patients: <Patients />,
+        departments: <Patient_Id />
+    }
+
+
+    const [curent_screen, setCurrentScreen] = useState(0)
+
+    const onButtonClick = () => {
+        console.log(screens)
+        setCurrentScreen((prevIndex) => {
+            if (prevIndex === screens.length)
+                return 0
+            else
+                return prevIndex + 1
+          })
+        //setCurrentScreen("departments")
+    }
+    
+    
     return (
-        <div className='flex flex-col rounded-md bg-[#FFFFFF]'>
+        <div className='flex flex-col rounded-md bg-[#FFFFFF] '>
             <div>
-                <div className=' flex font-[roboto]'>
+                <div className=' flex font-[roboto]  '>
                     {/* --------- 1st image ----------------- */}
                     {/* <RightSideDetail 
                     firstText={"Select a Patient"}
@@ -72,7 +104,7 @@ function Detail() {
 
                     {/*------------ Right Side Detail ------------------*/}
 
-                    <div className="p-2 w-full  text-[#7C7C7C] max-w-3xl rounded-tl-md  border  shadow-md sm:p-6 md:p-4 ">
+                    <div className="relative p-2 w-full h-[80vh]  text-[#7C7C7C]  rounded-tl-md  border  shadow-md sm:p-6 md:p-4 ">
                         {/*------------ Header ------------------*/}
                         <div className='flex text-[12px]'>
                             <h1 >Patient Info</h1>
@@ -83,11 +115,17 @@ function Detail() {
                         </div>
 
                         {/*------------ Body ------------------*/}
-                        <Patients/>
+                        {/* <Patients/>
+                        <Patient_Id /> */}
+                        <div className='h-[400px] overflow-auto '>
+                            {
+                                screens[curent_screen]
+                            }
+                        </div>
 
                         {/*------------ Footer Next Button ------------------*/}
-                        <div className='mt-[200px] flex justify-center items-center'>
-                            <button className="md:w-full text-white bg-[#4E4E4E]  font-medium rounded-md text-xs px-20 md:px-[150px] py-2.5 text-center inline-flex items-center" type="button">Next <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg></button>
+                        <div className=' bottom-0 flex justify-center items-center'>
+                            <button onClick={onButtonClick} className="md:w-full text-white bg-[#4E4E4E]  font-medium rounded-md text-xs px-20 md:px-[150px] py-2.5 text-center inline-flex items-center" type="button">Next <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg></button>
                         </div>
                     </div>
 
@@ -95,7 +133,7 @@ function Detail() {
 
                     <div>
                         {/* <LeftSideDetail /> */}
-                        <Right_Side_Detail/>
+                        <Right_Side_Detail />
                     </div>
 
                 </div>
