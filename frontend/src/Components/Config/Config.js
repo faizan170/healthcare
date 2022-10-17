@@ -59,6 +59,18 @@ export const symptoms = [
     },
 ]
 
+export const comobibity =[
+    {
+        "name": "Acute Coronary Syndrome"
+    },
+    {
+        "name": "Heart Failure"
+    },
+    {
+        "name": "Arrhythmia"
+    },
+]
+
 export const tests = [
 
     {

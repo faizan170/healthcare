@@ -20,3 +20,11 @@ export const Symptoms = (data)=>async (dispatch) => {
     console.log(data)
     dispatch({type: FETCH_SYMPTOMS,payload: data})
 }
+export const Co_mobidity = (data)=>async (dispatch) => {
+    console.log(data)
+    dispatch({type: FETCH_COMOBIDITY,payload: data})
+}
+export const _tests = (data)=>async (dispatch) => {
+    console.log(data)
+    dispatch({type: FETCH_TESTS,payload: data})
+}

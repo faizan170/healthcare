@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import Patients from './Patients/Patients'
-import Patient_Id from './Patients/Department'
+import Department from './Patients/Department'
 import Right_Side_Detail from './Right_Side_Detail'
+import Comobidity from './Patients/Comobidity'
+import Test from './Patients/Test'
 
 
 function Detail() {
@@ -13,12 +15,14 @@ function Detail() {
     // ]
     const screens = [
         <Patients />,
-        <Patient_Id />, 
+        <Department />,
+        <Comobidity />,
+        <Test/> 
     ]
 
     const comps = {
         patients: <Patients />,
-        departments: <Patient_Id />
+        departments: <Department />,
     }
 
 

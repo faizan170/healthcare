@@ -6,13 +6,7 @@ import {  comobidityReducer, departmentReducer, detailReducer, diagnosisReducer,
 const reducer=combineReducers({
     //this will contain our reducers
     details: detailReducer,
-    // department: departmentReducer,
-    // symptoms: symptomsReducer,
-    // comobidity: comobidityReducer,
-    // tests: testsReducer,
-    // test_Results: test_ResultsReducer,
-    // diagnosis: diagnosisReducer,
-    // treatment: treatmentReducer,
+    
     
 });
 

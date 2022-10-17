@@ -8,41 +8,63 @@ function Department() {
     const [isCheckAll, setIsCheckAll] = useState();
     const [comment, setComment] = useState()
     const details = useSelector((state) => state.details);
+    const [checked, setChecked] = useState()
+    const [values, setValues] = useState([])
+
+    
+
+
     const dispatch = useDispatch();
     const handleChange = (e) => {
         console.log(e.target.value)
         setDepartment(e.target.value)
         dispatch(department({ name: e.target.value }))
     }
-    let myarr = []
-    let data = {}
-    const checkBoxHandler = (e) => {
-        console.log(e.target.id)
+
+
+
+    const checkBoxHandler = (e, index) => {
+
+        //console.log(e.target.id)
         if (e.target.id === "All") {
+            let myarr = []
             symptoms.map((item) => {
-                console.log(item.name)
                 myarr.push(item.name)
+
             })
-            setIsCheckAll(true)
+            setValues(myarr)
+
+            setChecked(true)
+
         }
         if (e.target.id === "uncheck") {
-            setIsCheckAll(false)
+            setValues([])
+
+            setChecked(false)
         }
 
-        myarr.push(e.target.value)
+        if (e.target.id === "default-checkbox") {
+            console.log(e.target.checked)
+            if (e.target.checked) {
+                console.log("chk", index)
+                setValues([...values, e.target.value])
+
+
+            } else {
+                console.log("unchk", index)
+                setValues(values.filter(item => item !== e.target.value))
+                
+
+
+            }
+        }
     }
-    console.log(details.patient)
-    console.log(myarr)
-    data.values = myarr
-    data.comment = comment
-    console.log(data)
-
-
-    // dispatch(Symptoms({values: myarr,comments: comment}))
-    // useEffect(()=>{
-
-    // },[])
     console.log(comment)
+    console.log(values)
+    const cmtHandler = (e) => {
+        console.log(e.target.value)
+        dispatch(Symptoms({ value: values, comments: e.target.value }))
+    }
 
     return (
         <div>
@@ -90,9 +112,10 @@ function Department() {
 
                                     <div className=''>{item.name}</div>
                                     <div className="flex items-center ">
-                                        <input 
-                                        // checked={isCheckAll} 
-                                        id="default-checkbox" type="checkbox" value={item.name} onChange={(e) => checkBoxHandler(e)} className="w-3 h-3 bg-gray-500 rounded" />
+                                        <input
+                                            
+                                            //checked={checked}
+                                            id="default-checkbox" type="checkbox" value={item.name} onChange={(e) => checkBoxHandler(e, index)} className="checkbox w-3 h-3 bg-gray-500 rounded" />
                                     </div>
                                 </div>
                                 <div className={index === 4 ? "mx-0" : 'border-b-2 mx-4'}></div>
@@ -111,7 +134,10 @@ function Department() {
                     <p className='mr-2 text-xs uppercase'>Comments</p>
                     <iconify-icon width="16" height="16" icon="bxs:help-circle"></iconify-icon>
                 </div>
-                <textarea id="message" onChange={(e) => setComment(e.target.value)} rows="1" className="block p-2.5 w-full mt-2 mb-5 text-sm outline-none  text-gray-900 bg-[#FFFFFF] rounded-md border border-gray-300    " placeholder=""></textarea>
+                <textarea id="message"
+                    //onChange={(e) => setComment(e.target.value)}
+                    onChange={(e) => cmtHandler(e)}
+                    rows="1" className="block p-2.5 w-full mt-2 mb-5 text-sm outline-none  text-gray-900 bg-[#FFFFFF] rounded-md border border-gray-300    " placeholder=""></textarea>
             </div>
         </div>
     )

@@ -7,11 +7,12 @@ export const detailReducer = (state = {}, action) => {
         case FETCH_DEPARTMENT:
             return { ...state,department: action.payload };
         case FETCH_SYMPTOMS:
+            //console.log(state)
             return { ...state,symptoms: action.payload };
-        // case FETCH_COMOBIDITY:
-        //     return { comobibity: action.payload };
-        // case FETCH_TESTS:
-        //     return { tests: action.payload };
+        case FETCH_COMOBIDITY:
+            return { ...state,comobibity: action.payload };
+        case FETCH_TESTS:
+            return { ...state,tests: action.payload };
         // case FETCH_TEST_RESULTS:
         //     return { test_results: action.payload };
         // case FETCH_DIAGNOSIS:
