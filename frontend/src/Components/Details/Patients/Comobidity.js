@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Co_mobidity } from '../../../actions/detailsActions';
 import { comobibity } from '../../Config/Config';
@@ -15,44 +15,67 @@ function Comobidity() {
     const [values, setValues] = useState([])
     const dispatch = useDispatch();
 
+    const [items, setItems] = useState([])
+
+    useEffect(() => {
+        storeValues()
+    }, [comobibity])
+    let allValues = []
+    const storeValues = () => {
+
+        comobibity.map((item) => {
+            
+            allValues.push({ name: item.name, checked: false })
+        })
+       
+        setItems(allValues)
+    }
+
 
 
 
     const checkBoxHandler = (e, index) => {
 
-        //console.log(e.target.id)
         if (e.target.id === "All") {
-            comobibity.map((item) => {
+            for (const item of items) {
+                item.checked = true;
+              }          
+              setItems([...items]);
 
-                setValues([...values, item.name])
-            })
-            setIsCheckAll(true)
         }
         if (e.target.id === "uncheck") {
-            setIsCheckAll(false)
+            for (const item of items) {
+                item.checked = false;
+              }          
+              setItems([...items]);
         }
 
         if (e.target.id === "default-checkbox") {
-
+            
             if (e.target.checked) {
-                setValues([...values, e.target.value])
+                items[index].checked = e.target.checked;
+                setItems([...items]);
+
 
             } else {
-
-                setValues(values.filter(item => item !== e.target.value))
+                items[index].checked = e.target.checked;
+                setItems([...items]);
             }
         }
+
+        console.log(items)
+        dispatch(Co_mobidity({ value: items}))
     }
     console.log(comment)
     console.log(values)
     const cmtHandler = (e) => {
-        console.log(e.target.value)
-        dispatch(Co_mobidity({ value: values, comments: e.target.value }))
+        
+        dispatch(Co_mobidity({comments: e.target.value }))
     }
     return (
         <div>
 
-            <div className='flex text-[14px] font-bold mt-6'>
+            <div className='flex text-[14px] font-bold mt-6 text-[#575757]'>
                 <iconify-icon width="20" height="20" icon="bxs:user"></iconify-icon>
                 <div className='ml-2'>{details.patient && details.patient.id}</div>
             </div>
@@ -63,12 +86,12 @@ function Comobidity() {
 
             <div className='flex flex-col mb-[-200px]'>
                 <div className="overflow-x-auto relative mt-4 border-2 text-xs  rounded-md">
-                    <div className='flex justify-between mx-4 py-2'>
+                    <div className='flex justify-between mx-4 py-2 text-gray-900'>
                         <div>Possible Co-morbidity</div>
                         <div className='flex items-center gap-1'>Expand <iconify-icon icon="fluent:expand-up-right-16-filled"></iconify-icon></div>
                     </div>
                     <div className='border-b-2 '></div>
-                    {comobibity.map((item, index) => {
+                    {items.map((item, index) => {
 
                         return (
 
@@ -78,11 +101,11 @@ function Comobidity() {
                                     <div className=''>{item.name}</div>
                                     <div className="flex items-center ">
                                         <input
-                                            // checked={select}
+                                            checked={item.checked}
                                             id="default-checkbox" type="checkbox" value={item.name} onChange={(e) => checkBoxHandler(e, index)} className="w-3 h-3 bg-gray-500 rounded" />
                                     </div>
                                 </div>
-                                <div className={index === comobibity.length ? "mx-0" : 'border-b-2 mx-4'}></div>
+                                <div className={index === items.length-1 ? "mx-0" : 'border-b-2 mx-4'}></div>
                             </div>
                         )
 

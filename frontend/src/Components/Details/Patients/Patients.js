@@ -31,7 +31,7 @@ function Patients() {
             </div>
             <div className="mt-2 flex">
 
-                <div className="rounded-l-md flex items-center p-2 bg-[#D9D9D9]">
+                <div className="rounded-l-md flex items-center p-2 bg-[#D9D9D9] text-gray-700">
                     <iconify-icon width="20" height="20" icon="bxs:user"></iconify-icon>
                 </div>
                 <div className='ml-1 md:w-full flex flex-col '>

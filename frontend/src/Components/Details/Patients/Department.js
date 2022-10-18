@@ -5,18 +5,26 @@ import { departments, symptoms } from '../../Config/Config';
 
 function Department() {
     const [Department, setDepartment] = useState()
-    const [isCheckAll, setIsCheckAll] = useState();
-    const [comment, setComment] = useState()
     const details = useSelector((state) => state.details);
-    const [checked, setChecked] = useState()
-    const [values, setValues] = useState([])
+    const [items, setItems] = useState([])
 
-    
+    useEffect(() => {
+        storeValues()
+    }, [symptoms])
+    let allValues = []
+    const storeValues = () => {
 
+        symptoms.map((item) => {
+
+            allValues.push({ name: item.name, checked: false })
+        })
+
+        setItems(allValues)
+    }
 
     const dispatch = useDispatch();
     const handleChange = (e) => {
-        console.log(e.target.value)
+
         setDepartment(e.target.value)
         dispatch(department({ name: e.target.value }))
     }
@@ -25,51 +33,48 @@ function Department() {
 
     const checkBoxHandler = (e, index) => {
 
-        //console.log(e.target.id)
         if (e.target.id === "All") {
-            let myarr = []
-            symptoms.map((item) => {
-                myarr.push(item.name)
-
-            })
-            setValues(myarr)
-
-            setChecked(true)
+            for (const item of items) {
+                item.checked = true;
+            }
+            setItems([...items]);
 
         }
         if (e.target.id === "uncheck") {
-            setValues([])
-
-            setChecked(false)
+            for (const item of items) {
+                item.checked = false;
+            }
+            setItems([...items]);
         }
 
         if (e.target.id === "default-checkbox") {
-            console.log(e.target.checked)
+
             if (e.target.checked) {
-                console.log("chk", index)
-                setValues([...values, e.target.value])
+                items[index].checked = e.target.checked;
+                setItems([...items]);
 
 
             } else {
-                console.log("unchk", index)
-                setValues(values.filter(item => item !== e.target.value))
-                
-
-
+                items[index].checked = e.target.checked;
+                setItems([...items]);
             }
         }
+
+        console.log(items)
+        dispatch(Symptoms({ value: items }))
+
     }
-    console.log(comment)
-    console.log(values)
+
+
     const cmtHandler = (e) => {
-        console.log(e.target.value)
-        dispatch(Symptoms({ value: values, comments: e.target.value }))
+
+        dispatch(Symptoms({ comments: e.target.value }))
     }
 
     return (
         <div>
 
-            <div className='flex text-[14px] font-bold mt-6'>
+            <div className='flex text-[14px] font-bold mt-6 text-[#575757]'>
                 <iconify-icon width="20" height="20" icon="bxs:user"></iconify-icon>
                 <div className='ml-2'>{details.patient && details.patient.id}</div>
             </div>
@@ -82,7 +87,7 @@ function Department() {
             </div>
             <div className="mt-2 flex">
 
-                <div className="rounded-l-md flex items-center p-2 bg-[#D9D9D9]">
+                <div className="rounded-l-md flex items-center p-2 bg-[#D9D9D9] text-gray-700">
                     <iconify-icon width="20" height="20" icon="bx:plus-medical"></iconify-icon>
                 </div>
                 <div className='ml-1 md:w-full flex flex-col '>
@@ -98,12 +103,12 @@ function Department() {
             </div>
             <div className={Department ? 'flex flex-col mb-[-200px]' : "hidden"}>
                 <div className="overflow-x-auto relative mt-4 border-2 text-xs  rounded-md">
-                    <div className='flex justify-between mx-4 py-2'>
+                    <div className='flex justify-between mx-4 py-2 text-gray-900'>
                         <div>Symptoms</div>
                         <div className='flex items-center gap-1'>Expand <iconify-icon icon="fluent:expand-up-right-16-filled"></iconify-icon></div>
                     </div>
                     <div className='border-b-2 '></div>
-                    {symptoms.map((item, index) => {
+                    {items.map((item, index) => {
 
                         return (
 
@@ -113,12 +118,12 @@ function Department() {
                                     <div className=''>{item.name}</div>
                                     <div className="flex items-center ">
                                         <input
-                                            
-                                            //checked={checked}
+
+                                            checked={item.checked}
                                             id="default-checkbox" type="checkbox" value={item.name} onChange={(e) => checkBoxHandler(e, index)} className="checkbox w-3 h-3 bg-gray-500 rounded" />
                                     </div>
                                 </div>
-                                <div className={index === 4 ? "mx-0" : 'border-b-2 mx-4'}></div>
+                                <div className={index === items.length - 1 ? "mx-0" : 'border-b-2 mx-4'}></div>
                             </div>
                         )
 

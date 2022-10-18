@@ -1,6 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
 function Right_Side_Detail() {
+    const details = useSelector(state => state.details)
+    const { patient } = details
+    console.log(patient)
+    const [patientData, setPatientData] = useState({
+
+    })
+    const Patient_Detail = () => {
+        if (patient) {
+            setPatientData({
+                name: patient.name,
+                mri_number: patient.mri_number,
+                date_of_birth: patient.date_of_birth
+            })
+        }
+        //console.log(patient)
+    }
+    console.log(Object.values(patientData).length)
+
     return (
         <div className="p-2 font-[roboto] text-[#7C7C7C]  sm:p-6 md:p-4 ">
             <div className='w-60'>
@@ -23,8 +42,31 @@ function Right_Side_Detail() {
                         <div className='flex '>
                             Patient Details
                         </div>
-                        <div className='flex items-center'>
+                        <div onClick={() => Patient_Detail()} className='flex items-center cursor-pointer'>
                             <iconify-icon icon="dashicons:arrow-down-alt2"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+                <div className={Object.entries(patientData).length !== 0 ? 'h-200px overflow-auto flex flex-col' : "hidden"}>
+                    <div>
+                        <label className='text-xs'>Patient Name</label>
+                        <div className='flex justify-between'>
+                            <p>{patientData.name}</p>
+                            <p className='text-xs'>change</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label className='text-xs'>mri_number</label>
+                        <div className='flex justify-between'>
+                            <p>{patientData.mri_number}</p>
+                            <p className='text-xs'>change</p>
+                        </div>
+                    </div>
+                    <div>
+                        <span className='text-xs'>date_of_birth</span>
+                        <div className='flex justify-between'>
+                            <span>{patientData.date_of_birth}</span>
+                            <span className='text-xs'>change</span>
                         </div>
                     </div>
                 </div>
