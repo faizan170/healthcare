@@ -8,14 +8,12 @@ function Patients() {
     const [PatientId, setPatientId] = useState()
     const dispatch = useDispatch();
     const handleChange = (e) => {
-        console.log(e.target.value)
         setPatientId(e.target.value)
     }
     
     useEffect(()=>{
         patients.map((user) => {
             if (user.id === PatientId) {
-                console.log(user)
                 dispatch(patient(user));
             }
         })

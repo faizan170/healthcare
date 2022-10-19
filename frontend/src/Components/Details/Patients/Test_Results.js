@@ -5,10 +5,12 @@ import UploadFile from './UploadFile/UploadFile';
 
 function Test_Results() {
     const details = useSelector((state) => state.details);
+    const { tests } = details
+    console.log(tests)
     const dispatch = useDispatch();
     const cmtHandler = (e) => {
-        
-        dispatch(Test_result({comments: e.target.value }))
+
+        dispatch(Test_result({ comments: e.target.value }))
     }
     return (
         <div>
@@ -19,18 +21,20 @@ function Test_Results() {
             </div>
             <div className='flex text-[14px] font-bold mt-2 text-[#575757]'>
                 <iconify-icon width="20" height="20" icon="eos-icons:test-tube"></iconify-icon>
-                <div className='ml-2 '>ECG</div>
+                <div className='max-w-xs'>{tests && tests.values.map((item, index) => {
+                    return (<span className='ml-2' key={index}>{item.checked && item.name}</span>)
+                })}</div>
             </div>
             <div className='mt-6 font-bold text-xs'>
                 <p>Upload Test result here</p>
             </div>
             <div>
-                <UploadFile/>
+                <UploadFile />
             </div>
-            
+
 
             <div className='flex flex-col mb-[-200px]' >
-                
+
                 <div className='font-bold mt-4  flex'>
                     <p className='mr-2 text-xs uppercase'>Comments</p>
                     <iconify-icon width="16" height="16" icon="bxs:help-circle"></iconify-icon>

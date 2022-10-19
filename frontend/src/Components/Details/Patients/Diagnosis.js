@@ -101,7 +101,7 @@ function Diagnosis() {
             </div>
             <div className={Diagnose ? 'flex flex-col mb-[-200px]' : "hidden"}>
                 <div className="overflow-x-auto relative mt-4 border-2 text-xs  rounded-md">
-                    <div className='flex justify-between mx-4 py-2 text-gray-900'>
+                    <div className='flex justify-between mx-4 py-2 text-[#575757] font-bold'>
                         <div>Treatment</div>
                         <div className='flex items-center gap-1'>Expand <iconify-icon icon="fluent:expand-up-right-16-filled"></iconify-icon></div>
                     </div>

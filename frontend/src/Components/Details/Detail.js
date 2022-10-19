@@ -7,40 +7,103 @@ import Test from './Patients/Test'
 import Test_Results from './Patients/Test_Results'
 import Diagnosis from './Patients/Diagnosis'
 import { useSelector } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Detail() {
-    const details=useSelector(state=>state.details)
+    const details = useSelector(state => state.details)
+    const { patient, department, comobibity, tests, test_results, diagnosis } = details
     console.log(details)
     const screens = [
         <Patients />,
         <Department />,
         <Comobidity />,
-        <Test/>,
-        <Test_Results/>,
-        <Diagnosis/> 
+        <Test />,
+        <Test_Results />,
+        <Diagnosis />
     ]
-
-    const comps = {
-        patients: <Patients />,
-        departments: <Department />,
-    }
-
-
     const [curent_screen, setCurrentScreen] = useState(0)
 
     const onButtonClick = () => {
-        console.log(screens)
-        setCurrentScreen((prevIndex) => {
-            if (prevIndex === screens.length-1)
-                return 0
-            else
-                return prevIndex + 1
-          })
-        //setCurrentScreen("departments")
+
+        console.log(curent_screen)
+        if(curent_screen===0){
+            if(patient){
+                setCurrentScreen((prevIndex) => {
+                    if (prevIndex === screens.length - 1)
+                        return 0
+                    else
+                        return prevIndex + 1
+                })   
+            }else{
+                setCurrentScreen(curent_screen) 
+            }
+        }
+        if(curent_screen===1){
+            if(department){
+                setCurrentScreen((prevIndex) => {
+                    if (prevIndex === screens.length - 1)
+                        return 0
+                    else
+                        return prevIndex + 1
+                })   
+            }else{
+                setCurrentScreen(curent_screen) 
+            }
+        }
+        if(curent_screen===2){
+            if(comobibity){
+                setCurrentScreen((prevIndex) => {
+                    if (prevIndex === screens.length - 1)
+                        return 0
+                    else
+                        return prevIndex + 1
+                })   
+            }else{
+                setCurrentScreen(curent_screen) 
+            }
+        }
+        if(curent_screen===3){
+            if(tests){
+                setCurrentScreen((prevIndex) => {
+                    if (prevIndex === screens.length - 1)
+                        return 0
+                    else
+                        return prevIndex + 1
+                })   
+            }else{
+                setCurrentScreen(curent_screen) 
+            }
+        }
+        if(curent_screen===4){
+            if(test_results){
+                setCurrentScreen((prevIndex) => {
+                    if (prevIndex === screens.length - 1)
+                        return 0
+                    else
+                        return prevIndex + 1
+                })   
+            }else{
+                setCurrentScreen(curent_screen) 
+            }
+        }
+        if(curent_screen===5){
+            if(diagnosis){
+                setCurrentScreen((prevIndex) => {
+                    if (prevIndex === screens.length - 1)
+                        return 0
+                    else
+                        return prevIndex + 1
+                })   
+            }else{
+                setCurrentScreen(curent_screen) 
+            }
+        }
     }
-    
-    
+   
+
+
     return (
         <div className='flex flex-col rounded-md bg-[#FFFFFF] '>
             <div>
@@ -59,6 +122,7 @@ function Detail() {
                             {
                                 screens[curent_screen]
                             }
+                           
                         </div>
                         {/*------------ Footer Next Button ------------------*/}
                         <div className=' bottom-0 flex justify-center items-center'>
@@ -76,6 +140,7 @@ function Detail() {
             <div>
                 <button className='w-full bg-[#5FA8A3] rounded-b-md text-white py-2.5 text-xs'>Done</button>
             </div>
+            <ToastContainer />
         </div>
     )
 }

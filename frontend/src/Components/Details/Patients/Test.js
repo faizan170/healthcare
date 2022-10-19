@@ -5,14 +5,7 @@ import { tests } from '../../Config/Config';
 
 function Test() {
     
-    const [isCheckAll, setIsCheckAll] = useState();
-    
-
-   
-
-    const [comment, setComment] = useState()
     const details = useSelector((state) => state.details);
-    const [values, setValues] = useState([])
     const dispatch = useDispatch();
 
     const [items, setItems] = useState([])
@@ -84,8 +77,8 @@ function Test() {
            
             <div className= 'flex flex-col mb-[-200px]'>
                 <div className="overflow-x-auto relative mt-4 border-2 text-xs  rounded-md">
-                    <div className='flex justify-between mx-4 py-2 text-gray-900'>
-                        <div>Tests</div>
+                    <div className='flex justify-between mx-4 py-2 text-[#575757] font-bold'>
+                        <div className=''>Tests</div>
                         <div className='flex items-center gap-1'>Expand <iconify-icon icon="fluent:expand-up-right-16-filled"></iconify-icon></div>
                     </div>
                     <div className='border-b-2 '></div>
