@@ -8,7 +8,9 @@ function HomePage() {
             <div className='w-[20%] bg-[#FFFFFF] h-screen'>
                 <Menu />
             </div>
-            <div className='ml-10 flex justify-center items-center'>
+            <div className='ml-10 flex justify-center items-center' style={{
+                width: '100%'
+            }}>
                 
                    <Detail/>
                 

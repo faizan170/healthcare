@@ -105,8 +105,7 @@ function Detail() {
 
 
     return (
-        <div className='flex flex-col rounded-md bg-[#FFFFFF] '>
-            <div>
+        <div className='flex flex-col rounded-lg w-[70%] h-[80%] bg-[#FFFFFF]'>
                 <div className=' flex font-[roboto]  '>
                     <div className="relative p-2 w-full h-[80vh]  text-[#7C7C7C]  rounded-tl-md  border  shadow-md sm:p-6 md:p-4 ">
                         {/*------------ Header ------------------*/}
@@ -118,7 +117,9 @@ function Detail() {
                             <h1 >Processes</h1>
                         </div>
                         {/*------------ Body ------------------*/}
-                        <div className='h-[400px] overflow-auto '>
+                        <div className='overflow-auto ' style={{
+                            height: 'calc(100% - 50px)'
+                        }}>
                             {
                                 screens[curent_screen]
                             }
@@ -136,7 +137,6 @@ function Detail() {
                     </div>
 
                 </div>
-            </div>
             <div>
                 <button className='w-full bg-[#5FA8A3] rounded-b-md text-white py-2.5 text-xs'>Done</button>
             </div>
