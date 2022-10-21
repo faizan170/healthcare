@@ -9,6 +9,19 @@ import {
     FETCH_TREATMENT
 } from "../constants/detailConstants";
 
+const intialState = {
+    use_case : "general",
+    patient: {},
+    department: {},
+    symptoms: {values: [], comments: ""},
+    comobibity: {values: [], comments: ""},
+    tests: {values: [], comments: ""},
+    test_results: {values: [], comments: ""},
+    diagnosis: {values: [], comments: ""},
+    treatment: {values: [], comments: ""},
+}
+
+
 export const detailReducer = (state = {}, action) => {
     switch (action.type) {
         case FETCH_PATIENT:

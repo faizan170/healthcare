@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { patient } from '../../../actions/detailsActions'
-import { patients } from '../../Config/Config'
+// import { patients } from '../../Config/Config'
+import Config from '../../Config/base'
 
 
 function Patients() {
+    const data = useSelector(state => state.details)
+    const { patients } = Config[data.use_case]
+
     const [PatientId, setPatientId] = useState()
     const dispatch = useDispatch();
     const handleChange = (e) => {
