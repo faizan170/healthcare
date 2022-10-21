@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Detail() {
     const details = useSelector(state => state.details)
-    const { patient, department, comobibity, tests, test_results, diagnosis } = details
+    const { patient, department,symptoms, comobibity, tests, test_results, diagnosis, treatment } = details
     console.log(details)
     const screens = [
         <Patients />,
@@ -41,7 +41,7 @@ function Detail() {
             }
         }
         if(curent_screen===1){
-            if(department){
+            if(department && symptoms){
                 setCurrentScreen((prevIndex) => {
                     if (prevIndex === screens.length - 1)
                         return 0
@@ -89,7 +89,7 @@ function Detail() {
             }
         }
         if(curent_screen===5){
-            if(diagnosis){
+            if(diagnosis && treatment){
                 setCurrentScreen((prevIndex) => {
                     if (prevIndex === screens.length - 1)
                         return 0

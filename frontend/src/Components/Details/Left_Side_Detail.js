@@ -1,51 +1,59 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Co_mobidity } from '../../../actions/detailsActions';
-import { comobibity } from '../../Config/Config';
-import Left_Side_Detail from '../Left_Side_Detail';
+import { department, Symptoms } from '../../actions/detailsActions';
+import { departments, symptoms } from '../Config/Config';
 
-function Comobidity() {
-
+function Left_Side_Detail(props) {
+    const [Department, setDepartment] = useState()
     const details = useSelector((state) => state.details);
-    const dispatch = useDispatch();
-
     const [items, setItems] = useState([])
+
+    console.log(props)
 
     useEffect(() => {
         storeValues()
-    }, [comobibity])
+    }, [symptoms])
     let allValues = []
     const storeValues = () => {
 
-        comobibity.map((item) => {
-            
+        symptoms.map((item) => {
+
             allValues.push({ name: item.name, checked: false })
         })
-       
+
         setItems(allValues)
     }
 
+    const dispatch = useDispatch();
+    const handleChange = (e) => {
+
+        setDepartment(e.target.value)
+        dispatch(department({ name: e.target.value }))
+    }
 
 
 
     const checkBoxHandler = (e, index) => {
 
+
+        console.log(e.target.checked)
+
         if (e.target.id === "All") {
             for (const item of items) {
                 item.checked = true;
-              }          
-              setItems([...items]);
+            }
+            setItems([...items]);
 
         }
         if (e.target.id === "uncheck") {
             for (const item of items) {
                 item.checked = false;
-              }          
-              setItems([...items]);
+            }
+            setItems([...items]);
         }
 
         if (e.target.id === "default-checkbox") {
-            
+
             if (e.target.checked) {
                 items[index].checked = e.target.checked;
                 setItems([...items]);
@@ -56,11 +64,16 @@ function Comobidity() {
                 setItems([...items]);
             }
         }
-        dispatch(Co_mobidity({ value: items}))
+
+        console.log(items)
+        dispatch(Symptoms({ value: items }))
+
     }
+
+
     const cmtHandler = (e) => {
-        
-        dispatch(Co_mobidity({comments: e.target.value }))
+
+        dispatch(Symptoms({ comments: e.target.value }))
     }
     return (
         <div>
@@ -69,19 +82,39 @@ function Comobidity() {
                 <iconify-icon width="20" height="20" icon="bxs:user"></iconify-icon>
                 <div className='ml-2'>{details.patient && details.patient.id}</div>
             </div>
-            <div className='mt-6 font-bold text-xs'>
-                <p>According to our data the patient might be suffering from</p>
+            <div className={props.pargraph_text?'hidden':"flex flex-col"}>
+                <div className='mt-6 font-bold text-xs'>
+                    <p>Select department</p>
+                </div>
+                <div className='mt-6 font-bold  flex'>
+                    <p className='mr-2 text-xs'>DEPARTMENT</p>
+                    <iconify-icon width="16" height="16" icon="bxs:help-circle"></iconify-icon>
+                </div>
+                <div className="mt-2 flex">
+
+                    <div className="rounded-l-md flex items-center p-2 bg-[#D9D9D9] text-gray-700">
+                        <iconify-icon width="20" height="20" icon="bx:plus-medical"></iconify-icon>
+                    </div>
+                    <div className='ml-1 md:w-full flex flex-col '>
+                        <div className='flex justify-center items-center bg-[#D9D9D9] text-sm'>
+                            <select value={Department} onChange={(e) => handleChange(e)} className="text-gray-900 text-sm w-full bg-[#D9D9D9] outline-none p-2.5 ">
+                                <option defaultValue>Select a Department</option>
+                                {departments.map((item, index) => {
+                                    return (<option key={index} value={item.name}>{item.name}</option>)
+                                })}
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-            <div className='flex flex-col mb-[-200px]'>
+            <div className={Department || props.pargraph_text ? 'flex flex-col mb-[-200px]' : "hidden"}>
                 <div className="overflow-x-auto relative mt-4 border-2 text-xs  rounded-md">
                     <div className='flex justify-between mx-4 py-2 text-[#575757] font-bold'>
-                        <div>Possible Co-morbidity</div>
+                        <div>{props.pargraph_text?props.table_header:"Symptoms"}</div>
                         <div className='flex items-center gap-1'>Expand <iconify-icon icon="fluent:expand-up-right-16-filled"></iconify-icon></div>
                     </div>
                     <div className='border-b-2 '></div>
-                    {items.map((item, index) => {
+                    {props.table_values.map((item, index) => {
 
                         return (
 
@@ -91,11 +124,12 @@ function Comobidity() {
                                     <div className=''>{item.name}</div>
                                     <div className="flex items-center ">
                                         <input
+
                                             checked={item.checked}
-                                            id="default-checkbox" type="checkbox" value={item.name} onChange={(e) => checkBoxHandler(e, index)} className="w-3 h-3 bg-gray-500 rounded" />
+                                            id="default-checkbox" type="checkbox" value={item.name} onChange={(e) => checkBoxHandler(e, index)} className="checkbox w-3 h-3 bg-gray-500 rounded" />
                                     </div>
                                 </div>
-                                <div className={index === items.length-1 ? "mx-0" : 'border-b-2 mx-4'}></div>
+                                <div className={index === items.length - 1 ? "mx-0" : 'border-b-2 mx-4'}></div>
                             </div>
                         )
 
@@ -117,15 +151,7 @@ function Comobidity() {
                     rows="1" className="block p-2.5 w-full mt-2 mb-5 text-sm outline-none  text-gray-900 bg-[#FFFFFF] rounded-md border border-gray-300    " placeholder=""></textarea>
             </div>
         </div>
-        // <div>
-        //     <Left_Side_Detail
-        //     pargraph_text={"According to our data the patient might be suffering from"}
-        //     table_header={"Possible Co-morbidity"}
-        //     table_values={items}
-
-        //     />
-        // </div>
     )
 }
 
-export default Comobidity
+export default Left_Side_Detail

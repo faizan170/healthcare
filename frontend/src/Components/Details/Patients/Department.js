@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { department, Symptoms } from '../../../actions/detailsActions';
 import { departments, symptoms } from '../../Config/Config';
+import Left_Side_Detail from '../Left_Side_Detail';
 
 function Department() {
     const [Department, setDepartment] = useState()
@@ -145,6 +146,11 @@ function Department() {
                     rows="1" className="block p-2.5 w-full mt-2 mb-5 text-sm outline-none  text-gray-900 bg-[#FFFFFF] rounded-md border border-gray-300    " placeholder=""></textarea>
             </div>
         </div>
+        // <div>
+        //     <Left_Side_Detail
+        //     table_values={items}
+        //     />
+        // </div>
     )
 }
 
