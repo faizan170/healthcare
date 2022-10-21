@@ -1,28 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { department, Symptoms } from '../../actions/detailsActions';
+import { Co_mobidity, department, Symptoms, _tests } from '../../actions/detailsActions';
 import { departments, symptoms } from '../Config/Config';
 
 function Left_Side_Detail(props) {
     const [Department, setDepartment] = useState()
     const details = useSelector((state) => state.details);
     const [items, setItems] = useState([])
+    const { symptoms, comobibity } = details
 
     console.log(props)
 
     useEffect(() => {
-        storeValues()
-    }, [symptoms])
-    let allValues = []
-    const storeValues = () => {
+        //storeValues()
+        setItems(props.table_values)
+    }, [props.table_values])
+    // let allValues = []
+    // const storeValues = () => {
 
-        symptoms.map((item) => {
+    //     symptoms.map((item) => {
 
-            allValues.push({ name: item.name, checked: false })
-        })
+    //         allValues.push({ name: item.name, checked: false })
+    //     })
 
-        setItems(allValues)
-    }
+    //     setItems(allValues)
+    // }
 
     const dispatch = useDispatch();
     const handleChange = (e) => {
@@ -66,14 +68,30 @@ function Left_Side_Detail(props) {
         }
 
         console.log(items)
-        dispatch(Symptoms({ value: items }))
+        if (props.table_header === "Possible Co-morbidity") {
+            return dispatch(Co_mobidity({ value: items }))
+        } else if (props.table_header === "Tests") {
+            return dispatch(_tests({ value: items }))
+        } else {
+            return dispatch(Symptoms({ value: items }))
+        }
+
 
     }
 
 
     const cmtHandler = (e) => {
 
-        dispatch(Symptoms({ comments: e.target.value }))
+
+        if (props.table_header === "Possible Co-morbidity") {
+            return dispatch(Co_mobidity({ comments: e.target.value }))
+        } else if (props.table_header === "Tests") {
+            console.log("comodity")
+            return dispatch(_tests({ comments: e.target.value }))
+        } else {
+            return dispatch(Symptoms({ comments: e.target.value }))
+        }
+
     }
     return (
         <div>
@@ -82,7 +100,7 @@ function Left_Side_Detail(props) {
                 <iconify-icon width="20" height="20" icon="bxs:user"></iconify-icon>
                 <div className='ml-2'>{details.patient && details.patient.id}</div>
             </div>
-            <div className={props.pargraph_text?'hidden':"flex flex-col"}>
+            <div className={props.pargraph_text ? 'hidden' : "flex flex-col"}>
                 <div className='mt-6 font-bold text-xs'>
                     <p>Select department</p>
                 </div>
@@ -107,10 +125,13 @@ function Left_Side_Detail(props) {
                     </div>
                 </div>
             </div>
+            <div className={props.pargraph_text ? "mt-2 font-bold text-xs" : "hidden"}>
+                <p>{props.pargraph_text}</p>
+            </div>
             <div className={Department || props.pargraph_text ? 'flex flex-col mb-[-200px]' : "hidden"}>
                 <div className="overflow-x-auto relative mt-4 border-2 text-xs  rounded-md">
                     <div className='flex justify-between mx-4 py-2 text-[#575757] font-bold'>
-                        <div>{props.pargraph_text?props.table_header:"Symptoms"}</div>
+                        <div>{props.pargraph_text ? props.table_header : "Symptoms"}</div>
                         <div className='flex items-center gap-1'>Expand <iconify-icon icon="fluent:expand-up-right-16-filled"></iconify-icon></div>
                     </div>
                     <div className='border-b-2 '></div>
