@@ -68,7 +68,7 @@ function Left_Side_Detail(props) {
         }
 
         console.log(items)
-        if (props.table_header === "Possible Co-morbidity") {
+        if (props.table_header === "Suspected Diseases") {
             return dispatch(Co_mobidity({ value: items }))
         } else if (props.table_header === "Tests") {
             return dispatch(_tests({ value: items }))
@@ -83,7 +83,7 @@ function Left_Side_Detail(props) {
     const cmtHandler = (e) => {
 
 
-        if (props.table_header === "Possible Co-morbidity") {
+        if (props.table_header === "Suspected Diseases") {
             return dispatch(Co_mobidity({ comments: e.target.value }))
         } else if (props.table_header === "Tests") {
             console.log("comodity")

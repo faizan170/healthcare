@@ -70,6 +70,11 @@ export const comobibity =[
         "name": "Arrhythmia"
     },
 ]
+export const main_diesease=[
+    {
+        "name": "general"
+    }
+]
 
 export const tests = [
 

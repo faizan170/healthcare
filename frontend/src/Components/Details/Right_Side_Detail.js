@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import moment from 'moment'
+import { Scrollbars } from 'react-custom-scrollbars';
 
 function Right_Side_Detail() {
 
@@ -12,7 +13,7 @@ function Right_Side_Detail() {
 
     return (
         <div className="p-2 font-[roboto] text-[#7C7C7C]  sm:p-6 md:p-4 ">
-            <div className='w-full h-[480px] overflow-auto'>
+            <div className='w-full h-[80vh]'>
                 <form>
                     <div className="relative w-full">
                         <div className="flex absolute inset-y-0 right-0 items-center pr-3 pointer-events-none">
@@ -21,6 +22,7 @@ function Right_Side_Detail() {
                         <input type="search" id="default-search" className="focus:outline-none text-xs block py-2 pl-2 pr-10 w-full  text-gray-900 bg-gray-50 rounded-lg border border-gray-300    dark:text-white  " placeholder="Search for xyz" required />
                     </div>
                 </form>
+                <Scrollbars autoHide style={{ height: 'calc(100% - 60px)' }}>
                 <div className='flex w-full mt-4 text-xs h-66'>
                     <div className='w-5 flex items-center text-[#1879B9]'>
                         <iconify-icon widht="15" height="15" icon="bxs:user"></iconify-icon>
@@ -36,7 +38,7 @@ function Right_Side_Detail() {
                 </div>
                 {/* ----------------Patient detail----------------- */}
                 <div className={patient && showDetail ? 'border flex flex-col mt-2 rounded-md' : "hidden"}>
-                    <div className='h-72 justify-end overflow-auto flex flex-col p-2' >
+                    <div className='h-72 justify-end flex flex-col p-2' >
                         <div>
                             <label className='text-xs'>Patient Name</label>
                             <div className='flex justify-between'>
@@ -109,7 +111,7 @@ function Right_Side_Detail() {
                 </div>
                 {/* ----------------Diagnose detail----------------- */}
                 <div className={diagnosis && showDiagnose ? 'border flex flex-col mt-2 rounded-md' : "hidden"}>
-                    <div className='h-72 justify-end overflow-auto flex flex-col p-2' >
+                    <div className='h-72 justify-end flex flex-col p-2' >
                         <div>
                             <label className='text-xs'>Diagnosis</label>
                             <div className='flex justify-between'>
@@ -126,12 +128,13 @@ function Right_Side_Detail() {
                             </div>
                         </div>
                     </div>
-                    <div className='flex justify-between gap-1 border rounded-b-md'>
+                    <div className='flex flex-col md:flex-row justify-between md:gap-1 border rounded-b-md'>
                         <button className=' text-xs p-2 text-[#559CCC]'>View Test Results</button>
                         <button className=' text-xs p-2 text-[#559CCC]'>View Symptoms</button>
                         <button className=' text-xs p-2 text-[#559CCC]'>View Perscription</button>
                     </div>
                 </div>
+                </Scrollbars>
             </div>
         </div>
     )

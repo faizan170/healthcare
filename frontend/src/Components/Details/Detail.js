@@ -24,8 +24,11 @@ function Detail() {
         <Test_Results />,
         <Diagnosis />
     ]
-    const [curent_screen, setCurrentScreen] = useState(0)
+    
 
+    
+    const [curent_screen, setCurrentScreen] = useState(0)
+   
     const onButtonClick = () => {
 
         console.log(curent_screen)
@@ -39,6 +42,15 @@ function Detail() {
                 })
             } else {
                 setCurrentScreen(curent_screen)
+                toast.warn('Please Select the Patient !', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
         }
         if (curent_screen === 1) {
@@ -51,6 +63,15 @@ function Detail() {
                 })
             } else {
                 setCurrentScreen(curent_screen)
+                toast.warn('Please Select the Department and Symptoms!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
         }
         if (curent_screen === 2) {
@@ -63,6 +84,15 @@ function Detail() {
                 })
             } else {
                 setCurrentScreen(curent_screen)
+                toast.warn('Please Select the Comobidity!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
         }
         if (curent_screen === 3) {
@@ -75,6 +105,15 @@ function Detail() {
                 })
             } else {
                 setCurrentScreen(curent_screen)
+                toast.warn('Please Select the Tests!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
         }
         if (curent_screen === 4) {
@@ -87,6 +126,15 @@ function Detail() {
                 })
             } else {
                 setCurrentScreen(curent_screen)
+                toast.warn('Please write the Comment!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
         }
         if (curent_screen === 5) {
@@ -97,9 +145,18 @@ function Detail() {
                     else
                         return prevIndex + 1
                 })
-            } else {
+            }else{
                 setCurrentScreen(curent_screen)
-            }
+                toast.warn('Please write the Diagnose and Treatment!', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            } 
         }
     }
 
@@ -130,12 +187,12 @@ function Detail() {
                     </Scrollbars>
                     {/*------------ Footer Next Button ------------------*/}
                     <div className=' '>
-                        <button onClick={onButtonClick} className="flex justify-center w-full bg-[#4E4E4E] rounded-md text-white py-2.5 text-xs" type="button">Next <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg></button>
+                        <button onClick={onButtonClick} className="flex justify-center w-full bg-[#4E4E4E] rounded-md text-white py-2.5 text-xs" type="button">{curent_screen===screens.length-1?"Finish":"Next"} <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg></button>
                     </div>
                 </div>
 
                 {/*------------ Left Side Detail ------------------*/}
-                <div className='w-[40%]'>
+                <div className='w-[40%] h-[80vh]'>
                     <Right_Side_Detail />
                 </div>
 

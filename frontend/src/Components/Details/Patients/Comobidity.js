@@ -23,7 +23,7 @@ function Comobidity() {
         <div>
             <Left_Side_Detail
             pargraph_text={"According to our data the patient might be suffering from"}
-            table_header={"Possible Co-morbidity"}
+            table_header={"Suspected Diseases"}
             table_values={items}
 
             />
