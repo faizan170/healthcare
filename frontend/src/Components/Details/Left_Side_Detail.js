@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Co_mobidity, department, Symptoms, _tests } from '../../actions/detailsActions';
-import { departments, symptoms } from '../Config/Config';
+// import { departments, symptoms } from '../Config/Config';
+// import {data as Config } from '../../Config/base'
+import { data as Config } from '../Config/base'
 
 function Left_Side_Detail(props) {
     const [Department, setDepartment] = useState()
     const details = useSelector((state) => state.details);
+    const data = useSelector(state => state.details)
     const [items, setItems] = useState([])
     const { symptoms, comobibity } = details
+    const { departments } = Config[data.use_case]
+    //const Symptoms = Config[data.use_case].symptoms
+
 
     console.log(props)
 

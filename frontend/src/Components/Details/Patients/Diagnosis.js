@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { _Diagnosis, _Treatment } from '../../../actions/detailsActions';
 import { diagnosis, treatment } from '../../Config/Config'
+import { data as Config } from '../../Config/base'
 
 function Diagnosis() {
 
     const details = useSelector((state) => state.details);
+    const data = useSelector(state => state.details)
+    const { diagnosis, treatment}=Config[data.use_case]
     const [items, setItems] = useState([])
     const [Diagnose, setDiagnose] = useState()
     const dispatch = useDispatch()

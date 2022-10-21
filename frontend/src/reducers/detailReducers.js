@@ -9,7 +9,7 @@ import {
     FETCH_TREATMENT
 } from "../constants/detailConstants";
 
-const intialState = {
+const initialState = {
     use_case : "general",
     patient: {},
     department: {},
@@ -22,7 +22,7 @@ const intialState = {
 }
 
 
-export const detailReducer = (state = {}, action) => {
+export const detailReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_PATIENT:
             return { ...state, patient: action.payload };

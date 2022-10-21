@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { comobibity } from '../../Config/Config';
+// import { comobibity } from '../../Config/Config';
 import Left_Side_Detail from '../Left_Side_Detail';
+import { data as Config } from '../../Config/base'
+import { useSelector } from 'react-redux';
 
 function Comobidity() {
     const [items, setItems] = useState([])
-
+    const data = useSelector(state => state.details)
+    const {comobibity}=Config[data.use_case]
     useEffect(() => {
         storeValues()
     }, [comobibity])
