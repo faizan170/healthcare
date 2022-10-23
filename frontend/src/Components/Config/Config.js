@@ -60,7 +60,7 @@ export const data = {
         },
     ],
 
-    comobibity: [
+    suspected_diseases: [
         {
             "name": "Acute Coronary Syndrome"
         },
@@ -134,6 +134,12 @@ export const data = {
         },
         {
             "name": "Amiodarone"
+        },
+        {
+            "name": "IV treatment"
+        },
+        {
+            "name": "Invasive treatment"
         },
     ]
 

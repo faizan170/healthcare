@@ -44,96 +44,144 @@ export const data = {
 
     symptoms: [
         {
-            "name": "Chest Pain"
+            "name": "Watery eye"
         },
         {
-            "name": "Apprehension"
+            "name": "Itchy eye"
         },
         {
-            "name": "Shortness of breath"
+            "name": "Red eye"
         },
         {
-            "name": "Palpitation"
+            "name": "Discharge from eyes"
         },
         {
-            "name": "Pressure chest"
+            "name": "Foreign body sensation"
+        },
+        {
+            "name": "Eye strain"
+        },
+        {
+            "name": "Eye floaters"
+        },
+        {
+            "name": "Painful eye"
+        },
+        {
+            "name": "Lump in eye"
+        },
+        {
+            "name": "Blurred vision"
+        },
+        {
+            "name": "Decreased vision"
+        },
+        {
+            "name": "Loss of vision"
+        },
+        {
+            "name": "Photosensitivity"
         },
     ],
 
-    comobibity: [
+    suspected_diseases: [
         {
-            "name": "Acute Coronary Syndrome"
+            "name": "Conjunctivitis"
         },
         {
-            "name": "Heart Failure"
+            "name": "Blepharitis"
         },
         {
-            "name": "Arrhythmia"
+            "name": "Uveitis"
         },
     ],
 
     tests: [
 
         {
-            "name": "ECG"
+            "name": "Physical Examination"
         },
         {
-            "name": "Cardiac Enzymes"
+            "name": "Slit lamp examination"
         },
         {
-            "name": "Echocardiography"
+            "name": "Refraction check"
         },
         {
-            "name": "Pro-BNP"
+            "name": "Fundoscopy"
         },
         {
-            "name": "CBC"
+            "name": "OCT"
         },
         {
-            "name": "ALT"
+            "name": "B-scan"
         },
         {
-            "name": "Creatinine"
+            "name": "Swab test"
         },
         {
-            "name": "Electrolytes"
+            "name": "IOP"
+        },
+        {
+            "name": "Pressure check"
         },
 
     ],
 
     diagnosis: [
         {
-            "name": "Heart Failure"
-        },
-        {
-            "name": "Arrhythmia"
-        },
-        {
-            "name": "Cholesterol"
+            "name": "Blepharitis"
         },
     ],
 
     treatment: [
         {
-            "name": "Furosemide"
+            "name": "Lid hygiene"
         },
         {
-            "name": "Aspirin"
+            "name": "Artificial tears"
         },
         {
-            "name": "ACE inhibitor"
+            "name": "Topical antibiotic"
         },
         {
-            "name": "Beta blocker"
+            "name": "Oral antibiotic"
         },
         {
-            "name": "Heparin"
+            "name": "Warm compresses"
         },
         {
-            "name": "Warfarin"
+            "name": "Antiallergic eye drops"
         },
         {
-            "name": "Amiodarone"
+            "name": "Oral antiallergic"
+        },
+        {
+            "name": "Antibacterial eye drops"
+        },
+        {
+            "name": "Antiviral eye drops"
+        },
+        {
+            "name": "Oral Antiviral"
+        },
+        {
+            "name": "Glasses"
+        },
+        {
+            "name": "Anti glaucoma drugs"
+        },
+        {
+            "name": "IV treatment"
+        },
+        {
+            "name": "Laser treatment"
+        },
+        {
+            "name": "Incision and drainage"
+        },
+        {
+            "name": "Invasive treatment"
         },
     ]
 

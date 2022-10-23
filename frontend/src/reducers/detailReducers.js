@@ -1,5 +1,5 @@
 import {
-    FETCH_COMOBIDITY,
+    FETCH_SUSPECTED_DISEASES,
     FETCH_DEPARTMENT,
     FETCH_DIAGNOSIS,
     FETCH_PATIENT,
@@ -14,7 +14,7 @@ const initialState = {
     patient: {},
     department: {},
     symptoms: {values: [], comments: ""},
-    comobibity: {values: [], comments: ""},
+    suspected_diseases: {values: [], comments: ""},
     tests: {values: [], comments: ""},
     test_results: {values: [], comments: ""},
     diagnosis: {values: [], comments: ""},
@@ -35,11 +35,11 @@ export const detailReducer = (state = initialState, action) => {
             } else {
                 return { ...state, symptoms: { ...state.symptoms, comments: action.payload.comments } };
             }
-        case FETCH_COMOBIDITY:
+        case FETCH_SUSPECTED_DISEASES:
             if (action.payload.value) {
-                return { ...state, comobibity: { ...state.comobibity, values: action.payload.value } };
+                return { ...state, suspected_diseases: { ...state.suspected_diseases, values: action.payload.value } };
             } else {
-                return { ...state, comobibity: { ...state.comobibity, comments: action.payload.comments } };
+                return { ...state, suspected_diseases: { ...state.suspected_diseases, comments: action.payload.comments } };
             }
         case FETCH_TESTS:
             if (action.payload.value) {

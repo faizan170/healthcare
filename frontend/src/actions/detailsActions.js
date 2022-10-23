@@ -1,6 +1,6 @@
 import {
     FETCH_PATIENT,
-    FETCH_COMOBIDITY,
+    FETCH_SUSPECTED_DISEASES,
     FETCH_DEPARTMENT,
     FETCH_DIAGNOSIS,
     FETCH_SYMPTOMS,
@@ -20,9 +20,9 @@ export const Symptoms = (data) => async (dispatch) => {
     console.log(data)
     dispatch({ type: FETCH_SYMPTOMS, payload: data })
 }
-export const Co_mobidity = (data) => async (dispatch) => {
+export const Suspected_diseases = (data) => async (dispatch) => {
     console.log(data)
-    dispatch({ type: FETCH_COMOBIDITY, payload: data })
+    dispatch({ type: FETCH_SUSPECTED_DISEASES, payload: data })
 }
 export const _tests = (data) => async (dispatch) => {
     console.log(data)

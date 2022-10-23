@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Co_mobidity, department, Symptoms, _tests } from '../../actions/detailsActions';
+import { Suspected_diseases, department, Symptoms, _tests } from '../../actions/detailsActions';
 // import { departments, symptoms } from '../Config/Config';
 // import {data as Config } from '../../Config/base'
 import { data as Config } from '../Config/base'
@@ -18,20 +18,9 @@ function Left_Side_Detail(props) {
     console.log(props)
 
     useEffect(() => {
-        //storeValues()
         setItems(props.table_values)
     }, [props.table_values])
-    // let allValues = []
-    // const storeValues = () => {
-
-    //     symptoms.map((item) => {
-
-    //         allValues.push({ name: item.name, checked: false })
-    //     })
-
-    //     setItems(allValues)
-    // }
-
+   
     const dispatch = useDispatch();
     const handleChange = (e) => {
 
@@ -59,30 +48,24 @@ function Left_Side_Detail(props) {
             }
             setItems([...items]);
         }
-
         if (e.target.id === "default-checkbox") {
 
             if (e.target.checked) {
                 items[index].checked = e.target.checked;
                 setItems([...items]);
-
-
             } else {
                 items[index].checked = e.target.checked;
                 setItems([...items]);
             }
         }
-
         console.log(items)
         if (props.table_header === "Suspected Diseases") {
-            return dispatch(Co_mobidity({ value: items }))
+            return dispatch(Suspected_diseases({ value: items }))
         } else if (props.table_header === "Tests") {
             return dispatch(_tests({ value: items }))
         } else {
             return dispatch(Symptoms({ value: items }))
         }
-
-
     }
 
 
@@ -90,7 +73,7 @@ function Left_Side_Detail(props) {
 
 
         if (props.table_header === "Suspected Diseases") {
-            return dispatch(Co_mobidity({ comments: e.target.value }))
+            return dispatch(Suspected_diseases({ comments: e.target.value }))
         } else if (props.table_header === "Tests") {
             console.log("comodity")
             return dispatch(_tests({ comments: e.target.value }))

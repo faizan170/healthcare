@@ -7,14 +7,14 @@ import { useSelector } from 'react-redux';
 function Comobidity() {
     const [items, setItems] = useState([])
     const data = useSelector(state => state.details)
-    const {comobibity}=Config[data.use_case]
+    const {suspected_diseases}=Config[data.use_case]
     useEffect(() => {
         storeValues()
-    }, [comobibity])
+    }, [suspected_diseases])
     let allValues = []
     const storeValues = () => {
 
-        comobibity.map((item) => {
+        suspected_diseases.map((item) => {
             
             allValues.push({ name: item.name, checked: false })
         })

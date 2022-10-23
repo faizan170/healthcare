@@ -14,7 +14,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 function Detail() {
     const details = useSelector(state => state.details)
-    const { patient, department, symptoms, comobibity, tests, test_results, diagnosis, treatment } = details
+    const { patient, department, symptoms, suspected_diseases, tests, test_results, diagnosis, treatment } = details
     console.log(details)
     const screens = [
         <Patients />,
@@ -75,7 +75,7 @@ function Detail() {
             }
         }
         if (curent_screen === 2) {
-            if (comobibity) {
+            if (suspected_diseases) {
                 setCurrentScreen((prevIndex) => {
                     if (prevIndex === screens.length - 1)
                         return 0
@@ -187,7 +187,7 @@ function Detail() {
                     </Scrollbars>
                     {/*------------ Footer Next Button ------------------*/}
                     <div className=' '>
-                        <button onClick={onButtonClick} className="flex justify-center w-full bg-[#4E4E4E] rounded-md text-white py-2.5 text-xs" type="button">{curent_screen===screens.length-1?"Finish":"Next"} <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg></button>
+                        <button onClick={onButtonClick} className="flex justify-center cursor-pointer w-full bg-[#4E4E4E] rounded-md text-white py-2.5 text-xs" type="button">{curent_screen===screens.length-1?"Finish":"Next"} <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"></path></svg></button>
                     </div>
                 </div>
 
