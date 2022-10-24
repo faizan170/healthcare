@@ -6,7 +6,8 @@ import {
     FETCH_SYMPTOMS,
     FETCH_TESTS,
     FETCH_TEST_RESULTS,
-    FETCH_TREATMENT
+    FETCH_TREATMENT,
+    CHANGE_USECASE
 } from "../constants/detailConstants";
 
 const initialState = {
@@ -57,6 +58,8 @@ export const detailReducer = (state = initialState, action) => {
             } else {
                 return { ...state, treatment: { ...state.treatment, comments: action.payload.comments } };
             }
+        case CHANGE_USECASE:
+            return { ...state, use_case: action.payload };
 
         default:
             return state;

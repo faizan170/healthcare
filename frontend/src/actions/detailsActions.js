@@ -6,7 +6,8 @@ import {
     FETCH_SYMPTOMS,
     FETCH_TESTS,
     FETCH_TEST_RESULTS,
-    FETCH_TREATMENT
+    FETCH_TREATMENT,
+    CHANGE_USECASE
 } from "../constants/detailConstants";
 
 export const patient = (user) => async (dispatch) => {
@@ -39,4 +40,7 @@ export const _Diagnosis = (data) => async (dispatch) => {
 export const _Treatment = (data) => async (dispatch) => {
     console.log(data)
     dispatch({ type: FETCH_TREATMENT, payload: data })
+}
+export const _UseCase = (data) => async (dispatch) => {
+    dispatch({ type: CHANGE_USECASE, payload: data })
 }

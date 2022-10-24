@@ -98,7 +98,24 @@ export const data = {
         {
             "name": "Electrolytes"
         },
-
+        {
+            "name": "Blood Glucose Levels"
+        },
+        {
+            "name": "ABGs"
+        },
+        {
+            "name": "Pro-BNP"
+        },
+        {
+            "name": "Chest X-Ray"
+        },
+        {
+            "name": "INR(PT)"
+        },
+        {
+            "name": "Coronary Angiography"
+        }
     ],
 
     diagnosis: [
