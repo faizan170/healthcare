@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { _Diagnosis, _Treatment } from '../../../actions/detailsActions';
 import { diagnosis, treatment } from '../../Config/Config'
 import { data as Config } from '../../Config/base'
-
+import makeAnimated from 'react-select/animated';
+import Select from 'react-select'
 function Diagnosis() {
-
+    const animatedComponents = makeAnimated();
     const details = useSelector((state) => state.details);
     const data = useSelector(state => state.details)
     const { diagnosis, treatment}=Config[data.use_case]
     const [items, setItems] = useState([])
-    const [Diagnose, setDiagnose] = useState()
+    const [Diagnose, setDiagnose] = useState([])
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -29,8 +30,8 @@ function Diagnosis() {
 
 
     const handleChange = (e) => {
-        setDiagnose(e.target.value)
-        dispatch(_Diagnosis({ name: e.target.value }))
+        setDiagnose(e)
+        //dispatch(_Diagnosis({ name: e }))
     }
 
 
@@ -74,6 +75,16 @@ function Diagnosis() {
 
         dispatch(_Treatment({ comments: e.target.value }))
     }
+
+    // const options = [
+    //     { value: 'chocolate', label: 'Chocolate' },
+    //     { value: 'strawberry', label: 'Strawberry' },
+    //     { value: 'vanilla', label: 'Vanilla' }
+    //   ]
+
+    const options = diagnosis.map((item) => {
+        return { value: item.name, label: item.name }
+    })
     return (
         <div>
 
@@ -91,18 +102,23 @@ function Diagnosis() {
                 <div className="rounded-l-md flex items-center p-2 bg-[#D9D9D9] text-gray-700">
                     <iconify-icon width="20" height="20" icon="bxs:battery" rotate="270deg"></iconify-icon>
                 </div>
-                <div className='ml-1 md:w-full flex flex-col '>
+                <div className='ml-1 md:w-full flex flex-col'>
                     <div className='flex justify-center items-center bg-[#D9D9D9] text-sm'>
-                        <select value={Diagnose} onChange={(e) => handleChange(e)} className="text-gray-900 text-sm w-full bg-[#D9D9D9] outline-none p-2.5 ">
+                        {/* <select value={Diagnose} onChange={(e) => handleChange(e)} className="text-gray-900 text-sm w-full bg-[#D9D9D9] outline-none p-2.5 ">
                             <option defaultValue>Select Diagnosis</option>
                             {diagnosis.map((item, index) => {
                                 return (<option key={index} value={item.name}>{item.name}</option>)
                             })}
-                        </select>
+                        </select> */}
+                        <Select closeMenuOnSelect={false} className="text-gray-900 text-sm w-full bg-[#D9D9D9] outline-none"
+                            components={animatedComponents}
+                            onChange={(e) => handleChange(e)}
+                            isMulti options={options} />
+                        
                     </div>
                 </div>
             </div>
-            <div className={Diagnose ? 'flex flex-col mb-[-200px]' : "hidden"}>
+            <div className={Diagnose.length > 0 ? 'flex flex-col mb-[-200px]' : "hidden"}>
                 <div className="overflow-x-auto relative mt-4 border-2 text-xs  rounded-md">
                     <div className='flex justify-between mx-4 py-2 text-[#575757] font-bold'>
                         <div>Treatment</div>
